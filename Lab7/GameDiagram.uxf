@@ -11,7 +11,13 @@
     </coordinates>
     <panel_attributes>Hero Driver
 --
+panes
 Stage/Scene
+images
+
+
+--
+buttons
 
 
 
@@ -91,17 +97,6 @@ Stage/Scene
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>160</x>
-      <y>112</y>
-      <w>88</w>
-      <h>88</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;90.0;90.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
       <x>72</x>
       <y>112</y>
       <w>24</w>
@@ -109,5 +104,17 @@ Stage/Scene
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>168</x>
+      <y>232</y>
+      <w>80</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=.&gt;
+</panel_attributes>
+    <additional_attributes>10.0;20.0;80.0;20.0</additional_attributes>
   </element>
 </diagram>
