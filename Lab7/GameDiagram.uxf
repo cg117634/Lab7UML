@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>0</y>
+      <w>168</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Hero Driver
+--
+Stage/Scene
+
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>232</x>
+      <y>8</y>
+      <w>168</w>
+      <h>136</h>
+    </coordinates>
+    <panel_attributes>Enemy
+--
+-enemyMoveLeft
+-enemyMoveRight
+-enemyMoveUp
+-enemyMoveDown
+--
++moveEnemyLeft
++moveEnemyRight
++moveEnemyUp
++moveEnemyDown</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>232</x>
+      <y>184</y>
+      <w>168</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>Movement
+--
+-moveLeft
+-moveRight
+-moveUp
+-moveDown
+--
++movePlayerLeft
++movePlayerRight
++movePlayerUp
++movePlayerDown</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>8</x>
+      <y>200</y>
+      <w>168</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>Player
+--
+-score
+
+--
++returnScore</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
