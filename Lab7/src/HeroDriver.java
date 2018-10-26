@@ -6,7 +6,8 @@ import javafx.stage.Stage;
 //made October 19, 2018
 public class HeroDriver extends Application{
 
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+	{
 		launch(args);
 
 	}
@@ -17,7 +18,7 @@ public class HeroDriver extends Application{
 	
 
 		
-		//asdfds
+		
 		
 		
 	}
