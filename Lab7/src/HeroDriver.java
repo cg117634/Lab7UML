@@ -16,8 +16,13 @@ public class HeroDriver extends Application{
 	public void start(Stage scene) throws Exception, FileNotFoundException
 	{
 	
+<<<<<<< HEAD
 
 		
 
+=======
+
+	
+>>>>>>> branch 'master' of https://github.com/cg117634/Lab7UML
 	}
 }
