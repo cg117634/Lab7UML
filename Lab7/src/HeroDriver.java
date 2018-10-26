@@ -17,14 +17,6 @@ public class HeroDriver extends Application{
 	{
 	
 
-		
-/*<<<<<<< HEAD
-		
-		
-=======
-		//asdfds
-		//asdfasfsaf
->>>>>>> branch 'master' of https://github.com/cg117634/Lab7UML
-	*/	
+	
 	}
 }
