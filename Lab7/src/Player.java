@@ -1,8 +1,8 @@
-//new Comment
-
-
+import javafx.scene.input.KeyEvent;
 
 //made October 19, 2018
+
+//Movement code located in comments below right now.
 public class Player {
 	
 	private int score;
@@ -23,3 +23,34 @@ public class Player {
 	}
 
 }
+/*
+
+public void move(KeyEvent movement) {
+	
+	switch(movement.getCode()) {
+	case D:
+		imgView.setX(imgView.getX()+20);
+		currentScore.setText("Current Score: " + addScore.playerScore());
+		
+		break;
+	case A:
+		imgView.setX(imgView.getX()-20);
+		currentScore.setText("Current Score: " + addScore.playerScore());
+		break;
+	case W:
+		imgView.setY(imgView.getY()-20);
+		currentScore.setText("Current Score: " + addScore.playerScore());
+		break;
+	case S:
+		imgView.setY(imgView.getY()+20);
+		currentScore.setText("Current Score: " + addScore.playerScore());
+		
+		break;
+		default:
+		break;
+		
+	}
+	
+	
+	
+}*/
