@@ -1,5 +1,6 @@
 
 import javafx.application.Application;
+import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
@@ -11,7 +12,9 @@ public class Player extends Application{
 	
 	private int score;
 	public String scene;
-	public String primaryStage;
+	public Scene primaryStage;
+	
+	
 	
 	
 	
@@ -20,7 +23,7 @@ public class Player extends Application{
 		this.score=score;
 	}
 	
-	public Player( String scene, String primaryStage) 
+	public Player( String scene, Scene primaryStage) 
 	{
 		this.scene = scene;
 		this.primaryStage = primaryStage;
@@ -33,6 +36,7 @@ public class Player extends Application{
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		
 		
 		
 	}
