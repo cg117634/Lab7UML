@@ -20,7 +20,7 @@ public class Player {
 	public ImageView imgView;
 	public Group gameplay;
 	public Stage firstStage;
-	
+	public Image player;
 	
 	
 	
@@ -46,15 +46,15 @@ public class Player {
 	}
 	
 	//Public Scene for the Driver----------------
-	public void playermove() {
-		Image player = new Image("file:src/littleViking.png");
+	public Scene playermove() {
+		player = new Image("littleViking.png");
 		imgView = new ImageView(player);
-		imgView.setY(500);
+		//imgView.setY(500);
 	
-	
+		
 		primaryScene.setOnKeyPressed(this::move);
 		
-
+		return primaryScene;
 		
 	}
 	
