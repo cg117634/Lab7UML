@@ -1,28 +1,39 @@
-<<<<<<< HEAD
 
-=======
+import javafx.application.Application;
 import javafx.scene.input.KeyEvent;
->>>>>>> branch 'master' of https://github.com/cg117634/Lab7UML
+import javafx.stage.Stage;
+
 
 //made October 19, 2018
 
 //Movement code located in comments below right now.
-public class Player {
+public class Player extends Application{
 	
 	private int score;
+	public String scene;
+	public String primaryStage;
 	
 	
-	public Player(int score) {
-		
+	
+	public Player(int score) 
+	{
 		this.score=score;
-		
-		
 	}
 	
-	
+	public Player( String scene, String primaryStage) 
+	{
+		this.scene = scene;
+		this.primaryStage = primaryStage;
+	}
 	public int playerScore() {
 		
 		return score;
+		
+	}
+
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		
 		
 	}
 
