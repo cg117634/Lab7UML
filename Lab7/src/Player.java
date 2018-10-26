@@ -1,3 +1,4 @@
+
 import java.io.FileNotFoundException;
 
 import javafx.application.Application;
@@ -12,7 +13,7 @@ import javafx.stage.Stage;
 //made October 19, 2018
 
 //Movement code located in comments below right now.
-public class Player extends Application {
+public class Player {
 	
 	private int score;
 	private Scene primaryScene;
@@ -21,11 +22,6 @@ public class Player extends Application {
 	public Stage firstStage;
 	
 	
-	public static void main(String[] args) 
-	{
-		launch(args);
-
-	}
 	
 	
 	
@@ -50,25 +46,19 @@ public class Player extends Application {
 	}
 	
 	//Public Scene for the Driver----------------
-	public void start(Stage scene) throws Exception, FileNotFoundException
-	{
-		firstStage =scene; 
-		
-		Image player = new Image("littleViking.png");
+	public void playermove() {
+		Image player = new Image("file:src/littleViking.png");
 		imgView = new ImageView(player);
 		imgView.setY(500);
-		gameplay = new Group(imgView);
-		primaryScene = new Scene(gameplay,600,600);
+	
+	
 		primaryScene.setOnKeyPressed(this::move);
 		
-		firstStage.setTitle("My Game");
+
 		
-		firstStage.setScene(primaryScene);
-		firstStage.show();
-		
-		
-	
 	}
+	
+
 	
 
 
