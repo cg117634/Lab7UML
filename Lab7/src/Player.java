@@ -2,11 +2,14 @@
 import java.io.FileNotFoundException;
 
 import javafx.application.Application;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 //made October 19, 2018
@@ -19,8 +22,9 @@ public class Player
 	private Scene primaryScene;
 	public Group myGroup;
 	public Stage firstStage;
-	public ImageView imgView;
-	
+	private ImageView imgView;
+	private Rectangle2D psb = Screen.getPrimary().getVisualBounds();
+
 	
 	//Constructor----------------------
 	public Player(Scene primaryScene, Group myGroup)
@@ -29,7 +33,7 @@ public class Player
 		this.primaryScene = primaryScene;
 		this.myGroup = myGroup;
 		imgView = new ImageView(new Image("file:src/littleViking.png"));
-		imgView.relocate(250, 250);
+		imgView.relocate(psb.getWidth() * .43, psb.getHeight() * .4);
 	}
 		
 	
@@ -68,8 +72,8 @@ public class Player
 				imgView.setY(imgView.getY()+20);
 				//currentScore.setText("Current Score: " + addScore.playerScore());
 				break;
-				default:
+			default:
 				break;
-		}	
+		}
 	}
 }
