@@ -1,49 +1,42 @@
 //testcomment
 //new test 
 
-
-
 //made October 19, 2018
-public class Enemy {
-	
+public class Enemy
+{
 	private int enemyMoveLeft;
 	private int enemyMoveRight;
 	private int enemyMoveUp;
 	private int enemyMoveDown;
 	
-	
-	
-	public Enemy(int enemyMoveLeft, int enemyMoveRight, int enemyMoveUp, int enemyMoveDown) {
-		
+	// Constructor
+	public Enemy(int enemyMoveLeft, int enemyMoveRight, int enemyMoveUp, int enemyMoveDown)
+	{
 		this.enemyMoveLeft=enemyMoveLeft;
 		this.enemyMoveRight=enemyMoveRight;
 		this.enemyMoveUp=enemyMoveUp;
-		this.enemyMoveDown=enemyMoveDown;
-		
-		
+		this.enemyMoveDown=enemyMoveDown;	
 	}
 	
 	
-	public int moveEnemyLeft() {
-		
+	public int moveEnemyLeft() 
+	{
 		return enemyMoveLeft;
 		
 	}
 	
-public int moveEnemyRight() {
-		
+	public int moveEnemyRight()
+	{
 		return enemyMoveRight;
-		
 	}
-public int moveEnemyUp() {
 	
-	return enemyMoveUp;
+	public int moveEnemyUp()
+	{
+	return enemyMoveUp;	
+	}
 	
-}
-public int moveEnemyDown() {
-	
+	public int moveEnemyDown() 
+	{
 	return enemyMoveDown;
-	
-}
-
+	}
 }
