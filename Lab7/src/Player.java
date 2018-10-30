@@ -1,13 +1,9 @@
 
-import java.io.FileNotFoundException;
-
-import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -33,13 +29,27 @@ public class Player
 		this.primaryScene = primaryScene;
 		this.myGroup = myGroup;
 		imgView = new ImageView(new Image("file:src/littleViking.png"));
-		imgView.relocate(psb.getWidth() * .43, psb.getHeight() * .4);
+		imgView.relocate(psb.getWidth() * .2, psb.getHeight() * .7);
 	}
 		
+	public double getXCoordinate()
+	{
+		return imgView.getLayoutX();
+	}
+	
+	public double getYCoordinate()
+	{
+		return imgView.getLayoutY();
+	}
 	
 	public int playerScore()
 	{
 		return score;
+	}
+	
+	public Scene getScene()
+	{
+		return primaryScene;
 	}
 	
 	//Public Scene for the Driver----------------
@@ -49,6 +59,15 @@ public class Player
 		
 		primaryScene.setOnKeyPressed(this::move);
 		
+		return primaryScene;
+	}
+	
+	public Scene addEnemy(Enemy enemy)
+	{
+		enemy.chasePlayer(this);
+		
+		myGroup.getChildren().add(enemy.getImgView());
+				
 		return primaryScene;
 	}
 	

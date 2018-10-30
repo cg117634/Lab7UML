@@ -15,6 +15,7 @@ public class HeroDriver extends Application
 {
 	Scene currentScene;
 	Player player1;
+	Enemy enemy;
 	
 	Stage stage;
 
@@ -29,7 +30,7 @@ public class HeroDriver extends Application
 	public void start(Stage primaryStage) throws Exception, FileNotFoundException
 	{
 		// Start screen
-		Text startScreenText = new Text("Press the button to begin!");
+		Text startScreenText = new Text("Press the button to begin!\n\tMove with WASD");
 		startScreenText.relocate(psb.getWidth() * .4, psb.getHeight() * .2);
 		
 		Button startScreenButton = new Button("Go!");
@@ -43,7 +44,8 @@ public class HeroDriver extends Application
 		// Game
 		Group myGroup = new Group();
 		player1 = new Player(new Scene(myGroup, psb.getWidth() * .9, psb.getHeight() * .9), myGroup);
-				
+		player1.addEnemy(new Enemy());
+		
 		// Stage
 		this.stage = primaryStage;
 		primaryStage.setTitle("My Game");
