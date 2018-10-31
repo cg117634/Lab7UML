@@ -1,4 +1,5 @@
 
+
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -76,19 +77,19 @@ public class Player
 		switch(movement.getCode())
 		{
 			case D:
-				imgView.setX(imgView.getX()+20);
+				imgView.relocate(imgView.getLayoutX() + 5, imgView.getLayoutY());
 				//currentScore.setText("Current Score: " + addScore.playerScore());
 				break;
 			case A:
-				imgView.setX(imgView.getX()-20);
+				imgView.relocate(imgView.getLayoutX() - 5, imgView.getLayoutY());
 				//currentScore.setText("Current Score: " + addScore.playerScore());
 				break;
 			case W:
-				imgView.setY(imgView.getY()-20);
+				imgView.relocate(imgView.getLayoutX(), imgView.getLayoutY()-5);
 				//currentScore.setText("Current Score: " + addScore.playerScore());
 				break;
 			case S:
-				imgView.setY(imgView.getY()+20);
+				imgView.relocate(imgView.getLayoutX(), imgView.getLayoutY()+5);
 				//currentScore.setText("Current Score: " + addScore.playerScore());
 				break;
 			default:
