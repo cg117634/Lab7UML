@@ -1,3 +1,4 @@
+//made October 19, 2018
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -48,23 +49,28 @@ public class Enemy
 		@Override
 		public void actionPerformed(ActionEvent arg0)
 		{
-			if (playerToChase.getXCoordinate() > imgView.getLayoutX())
-			{
+			
+			
+			while(playerToChase.getXCoordinate() > imgView.getLayoutX()) {
 				imgView.relocate(imgView.getLayoutX() + 1, imgView.getLayoutY());
+				break;
 			}
-			else if (playerToChase.getXCoordinate() < imgView.getLayoutX())
+			while(playerToChase.getXCoordinate() < imgView.getLayoutX())
 			{
 				imgView.relocate(imgView.getLayoutX() - 1, imgView.getLayoutX());
+				break;
 			}
-			
-			if (playerToChase.getYCoordinate() > imgView.getLayoutY())
+			while(playerToChase.getYCoordinate() > imgView.getLayoutY())
 			{
 				imgView.relocate(imgView.getLayoutX(), imgView.getLayoutY() + 1);
+				break;
 			}
-			else if (playerToChase.getYCoordinate() < imgView.getLayoutY())
+			while(playerToChase.getYCoordinate() < imgView.getLayoutY())
 			{
 				imgView.relocate(imgView.getLayoutX(), imgView.getLayoutY() - 1);
+				break;
 			}
+
 		}
 	}
 }
