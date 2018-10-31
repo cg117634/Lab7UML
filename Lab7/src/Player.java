@@ -1,116 +1,98 @@
 
-
-//made October 19, 2018
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.Timer;
-
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Screen;
-
-
-//testcomment
-//new test 
+import javafx.stage.Stage;
 
 //made October 19, 2018
-public class Enemy
-{
-	private ImageView imgView;
-	private Timer myTimer;
-	private Rectangle2D psb = Screen.getPrimary().getVisualBounds();
-	private Player playerToChase;
-	
-	
-	// Constructor
-	public Enemy()
-	{	
-		imgView = new ImageView(new Image("file:src/bomb.png"));
-		imgView.relocate(psb.getWidth() * .1, psb.getHeight() * .1);
-		imgView.setFitHeight(30);
-		imgView.setFitWidth(30);
-	}
-	
-	public ImageView getImgView()
-	{
-		return imgView;
-	}
-	
-	public void chasePlayer(Player player)
-	{
-		this.playerToChase = player;
-		myTimer = new Timer(50, new myTimeHandler());
-		myTimer.start();
-	}
 
-	private class myTimeHandler implements ActionListener
+//Movement code located in comments below right now.
+public class Player
+{
+	
+	private int score;
+	private Scene primaryScene;
+	public Group myGroup;
+	public Stage firstStage;
+	private ImageView imgView;
+	private Rectangle2D psb = Screen.getPrimary().getVisualBounds();
+
+	
+	//Constructor----------------------
+	public Player(Scene primaryScene, Group myGroup)
 	{
-		@Override
-		public void actionPerformed(ActionEvent arg0)
+		this.score = 0;	
+		this.primaryScene = primaryScene;
+		this.myGroup = myGroup;
+		imgView = new ImageView(new Image("file:src/littleViking.png"));
+		imgView.relocate(psb.getWidth() * .2, psb.getHeight() * .7);
+	}
+		
+	public double getXCoordinate()
+	{
+		return imgView.getLayoutX();
+	}
+	
+	public double getYCoordinate()
+	{
+		return imgView.getLayoutY();
+	}
+	
+	public int playerScore()
+	{
+		return score;
+	}
+	
+	public Scene getScene()
+	{
+		return primaryScene;
+	}
+	
+	//Public Scene for the Driver----------------
+	public Scene playermove()
+	{
+		myGroup.getChildren().add(imgView);
+		
+		primaryScene.setOnKeyPressed(this::move);
+		
+		return primaryScene;
+	}
+	
+	public Scene addEnemy(Enemy enemy)
+	{
+		enemy.chasePlayer(this);
+		
+		myGroup.getChildren().add(enemy.getImgView());
+				
+		return primaryScene;
+	}
+	
+	public void move(KeyEvent movement)
+	{
+		switch(movement.getCode())
 		{
-			
-			
-			while(playerToChase.getXCoordinate() > imgView.getLayoutX()) {
-				imgView.relocate(imgView.getLayoutX() + 1, imgView.getLayoutY());
+			case D:
+				imgView.relocate(imgView.getLayoutX() + 5, imgView.getLayoutY());
+				//currentScore.setText("Current Score: " + addScore.playerScore());
 				break;
-			}
-			while(playerToChase.getXCoordinate() < imgView.getLayoutX())
-			{
-				imgView.relocate(imgView.getLayoutX() - 1, imgView.getLayoutX());
+			case A:
+				imgView.relocate(imgView.getLayoutX() - 5, imgView.getLayoutY());
+				//currentScore.setText("Current Score: " + addScore.playerScore());
 				break;
-			}
-			while(playerToChase.getXCoordinate() == imgView.getLayoutX()) {
-				
-				imgView.relocate(imgView.getLayoutX() , imgView.getLayoutY());
+			case W:
+				imgView.relocate(imgView.getLayoutX(), imgView.getLayoutY()-5);
+				//currentScore.setText("Current Score: " + addScore.playerScore());
 				break;
-			}
-			while(playerToChase.getYCoordinate() > imgView.getLayoutY())
-			{
-				imgView.relocate(imgView.getLayoutX(), imgView.getLayoutY() + 1);
+			case S:
+				imgView.relocate(imgView.getLayoutX(), imgView.getLayoutY()+5);
+				//currentScore.setText("Current Score: " + addScore.playerScore());
 				break;
-			}
-			while(playerToChase.getYCoordinate() < imgView.getLayoutY())
-			{
-				imgView.relocate(imgView.getLayoutX(), imgView.getLayoutY() - 1);
+			default:
 				break;
-			}
-			while(playerToChase.getYCoordinate() == imgView.getLayoutY()) {
-				imgView.relocate(imgView.getLayoutX(), imgView.getLayoutY());
-				break;
-			}
-			
-			
-			
-			
-			/*if (playerToChase.getXCoordinate() > imgView.getLayoutX())
-			{
-				imgView.relocate(imgView.getLayoutX() + 1, imgView.getLayoutY());
-				
-			}
-			if (playerToChase.getXCoordinate() < imgView.getLayoutX())
-			{
-				imgView.relocate(imgView.getLayoutX() - 1, imgView.getLayoutX());
-			}
-			else if (playerToChase.getXCoordinate() == imgView.getLayoutX()) {
-				
-				imgView.relocate(imgView.getLayoutX() , imgView.getLayoutY());
-			}
-			
-			if (playerToChase.getYCoordinate() > imgView.getLayoutY())
-			{
-				imgView.relocate(imgView.getLayoutX(), imgView.getLayoutY() + 1);
-			}
-			if (playerToChase.getYCoordinate() < imgView.getLayoutY())
-			{
-				imgView.relocate(imgView.getLayoutX(), imgView.getLayoutY() - 1);
-			}
-			else if (playerToChase.getYCoordinate() == imgView.getLayoutY()) {
-				imgView.relocate(imgView.getLayoutX(), imgView.getLayoutY());
-			}*/
-			
 		}
 	}
 }
