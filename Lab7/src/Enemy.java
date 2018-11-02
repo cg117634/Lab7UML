@@ -5,9 +5,11 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -24,6 +26,9 @@ public class Enemy
 	private Player playerToChase;
 	private Stage stage;
 	private Scene gameOverScene;
+	private String endGame;
+	private Text myText;
+	private Group myGroup;
 	
 	
 	// Constructor
@@ -46,6 +51,24 @@ public class Enemy
 		this.playerToChase = player;
 		myTimer = new Timer(50, new myTimeHandler());
 		myTimer.start();
+	
+	}
+	public Scene gameOver() {
+		if (playerToChase.areRectsColliding(playerToChase.getXCoordinate(),
+				playerToChase.getXCoordinate() + 79,
+				playerToChase.getYCoordinate(),
+				playerToChase.getYCoordinate() + 79,
+				imgView.getLayoutX(),
+				imgView.getLayoutX() + 40,
+				imgView.getLayoutY(),
+				imgView.getLayoutY() + 40)
+				== true)
+{
+			myText= new Text(100,100,"Game Over");
+			myGroup = new Group(myText);
+			gameOverScene=new Scene(myGroup, psb.getWidth() *.9, psb.getHeight() * .9);
+}
+		return gameOverScene;
 	}
 
 	private class myTimeHandler implements ActionListener
@@ -69,18 +92,7 @@ public class Enemy
 			{
 				imgView.setLayoutY(imgView.getLayoutY() - 3);
 			}
-			if (playerToChase.areRectsColliding(playerToChase.getXCoordinate(),
-											playerToChase.getXCoordinate() + 79,
-											playerToChase.getYCoordinate(),
-											playerToChase.getYCoordinate() + 79,
-											imgView.getLayoutX(),
-											imgView.getLayoutX() + 40,
-											imgView.getLayoutY(),
-											imgView.getLayoutY() + 40)
-											== true)
-			{
-				System.out.println("Game Over");
-			}
+			
 		}
 	}
 }
