@@ -29,6 +29,7 @@ public class Enemy
 	private String endGame;
 	private Text myText;
 	private Group myGroup;
+	private boolean isOver = false;
 	
 	
 	// Constructor
@@ -53,23 +54,7 @@ public class Enemy
 		myTimer.start();
 	
 	}
-	public Scene gameOver() {
-		if (playerToChase.areRectsColliding(playerToChase.getXCoordinate(),
-				playerToChase.getXCoordinate() + 79,
-				playerToChase.getYCoordinate(),
-				playerToChase.getYCoordinate() + 79,
-				imgView.getLayoutX(),
-				imgView.getLayoutX() + 40,
-				imgView.getLayoutY(),
-				imgView.getLayoutY() + 40)
-				== true)
-{
-			myText= new Text(100,100,"Game Over");
-			myGroup = new Group(myText);
-			gameOverScene=new Scene(myGroup, psb.getWidth() *.9, psb.getHeight() * .9);
-}
-		return gameOverScene;
-	}
+	
 
 	private class myTimeHandler implements ActionListener
 	{
@@ -79,19 +64,25 @@ public class Enemy
 			if (playerToChase.getXCoordinate() > imgView.getLayoutX())
 			{
 				imgView.setLayoutX(imgView.getLayoutX() + 3);
+				
 			}
 			if (playerToChase.getXCoordinate() < imgView.getLayoutX())
 			{
 				imgView.setLayoutX(imgView.getLayoutX() - 3);
+				
 			}
 			if (playerToChase.getYCoordinate() > imgView.getLayoutY())
 			{
 				imgView.setLayoutY(imgView.getLayoutY() + 3);
+				
 			}
 			if (playerToChase.getYCoordinate() < imgView.getLayoutY())
 			{
 				imgView.setLayoutY(imgView.getLayoutY() - 3);
+				
 			}
+			
+			
 			
 		}
 	}
