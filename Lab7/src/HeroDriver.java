@@ -6,6 +6,8 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -17,6 +19,7 @@ public class HeroDriver extends Application
 	Player player1;
 	Enemy enemy;
 	
+	Scene myScene;
 	Stage stage;
 
 	Rectangle2D psb = Screen.getPrimary().getVisualBounds();
@@ -39,22 +42,41 @@ public class HeroDriver extends Application
 		
 		Group startScreenGroup = new Group(startScreenText, startScreenButton);
 		Scene startScreenScene = new Scene(startScreenGroup, psb.getWidth() * .9, psb.getHeight() * .9);
-		currentScene = startScreenScene;
+		
+		
+		// Game over scene
+		Text gameOverText = new Text("Game Over");
+		gameOverText.relocate(500, 500);
+		
+		Group gameOverGroup = new Group(gameOverText);
+		Scene gameOverScene = new Scene(gameOverGroup, psb.getWidth() * .9, psb.getHeight() * .9);
+
 		
 		// Game
+		Image playerImage = new Image("file:src/littleViking.png");
+		Image enemyImage = new Image("file:src/enemy.png");
+		
 		Group myGroup = new Group();
-		player1 = new Player(new Scene(myGroup, psb.getWidth() * .9, psb.getHeight() * .9), myGroup);
-		player1.addEnemy(new Enemy());
+		myScene = new Scene(myGroup, psb.getWidth() *.9, psb.getHeight() * .9);
+		
+		player1 = new Player(myScene, playerImage);
+		player1.playermove();
+		
+		enemy = new Enemy(myScene, enemyImage, primaryStage, gameOverScene);
+		enemy.chasePlayer(player1);
+		
+		myGroup.getChildren().addAll(player1.getImgView(), enemy.getImgView());
+				
 		
 		// Stage
 		this.stage = primaryStage;
 		primaryStage.setTitle("My Game");
-		primaryStage.setScene(currentScene);
+		primaryStage.setScene(startScreenScene);
 		primaryStage.show();
 	}
 	
 	public void startButton(ActionEvent args)
 	{
-		stage.setScene(player1.playermove());
+		stage.setScene(myScene);
 	}
 }

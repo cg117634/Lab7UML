@@ -23,13 +23,18 @@ public class Player
 
 	
 	//Constructor----------------------
-	public Player(Scene primaryScene, Group myGroup)
+	public Player(Scene primaryScene, Image inputImage)
 	{
 		this.score = 0;	
 		this.primaryScene = primaryScene;
-		this.myGroup = myGroup;
-		imgView = new ImageView(new Image("file:src/littleViking.png"));
+		this.imgView = new ImageView(inputImage);
 		imgView.relocate(psb.getWidth() * .2, psb.getHeight() * .7);
+	}
+	
+	
+	public ImageView getImgView()
+	{
+		return imgView;
 	}
 		
 	public double getXCoordinate()
@@ -47,28 +52,10 @@ public class Player
 		return score;
 	}
 	
-	public Scene getScene()
-	{
-		return primaryScene;
-	}
-	
 	//Public Scene for the Driver----------------
-	public Scene playermove()
+	public void playermove()
 	{
-		myGroup.getChildren().add(imgView);
-		
 		primaryScene.setOnKeyPressed(this::move);
-		
-		return primaryScene;
-	}
-	
-	public Scene addEnemy(Enemy enemy)
-	{
-		enemy.chasePlayer(this);
-		
-		myGroup.getChildren().add(enemy.getImgView());
-				
-		return primaryScene;
 	}
 	
 	public void move(KeyEvent movement)
@@ -76,23 +63,39 @@ public class Player
 		switch(movement.getCode())
 		{
 			case D:
-				imgView.relocate(imgView.getLayoutX() + 5, imgView.getLayoutY());
+				imgView.setLayoutX(imgView.getLayoutX() + 10);
 				//currentScore.setText("Current Score: " + addScore.playerScore());
 				break;
 			case A:
-				imgView.relocate(imgView.getLayoutX() - 5, imgView.getLayoutY());
+				imgView.setLayoutX(imgView.getLayoutX() - 10);
 				//currentScore.setText("Current Score: " + addScore.playerScore());
 				break;
 			case W:
-				imgView.relocate(imgView.getLayoutX(), imgView.getLayoutY()-5);
+				imgView.setLayoutY(imgView.getLayoutY() - 10);
 				//currentScore.setText("Current Score: " + addScore.playerScore());
 				break;
 			case S:
-				imgView.relocate(imgView.getLayoutX(), imgView.getLayoutY()+5);
+				imgView.setLayoutY(imgView.getLayoutY() + 10);
 				//currentScore.setText("Current Score: " + addScore.playerScore());
 				break;
 			default:
 				break;
+		}
+	}
+	public boolean areRectsColliding(double r1TopLeftX, double
+		r1BottomRightX,double r1TopLeftY, double r1BottomRightY, double
+		r2TopLeftX,double r2BottomRightX, double r2TopLeftY, double
+		r2BottomRightY)
+	{
+		if (r1TopLeftX < r2BottomRightX && r1BottomRightX >
+			r2TopLeftX && r1TopLeftY < r2BottomRightY && r1BottomRightY >
+			r2TopLeftY) 
+		{
+			return true;
+		}
+		else
+		{
+			return false;
 		}
 	}
 }

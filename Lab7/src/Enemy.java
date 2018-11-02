@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Screen;
+import javafx.stage.Stage;
 
 
 //testcomment
@@ -21,16 +22,19 @@ public class Enemy
 	private Timer myTimer;
 	private Rectangle2D psb = Screen.getPrimary().getVisualBounds();
 	private Player playerToChase;
+	private Stage stage;
+	private Scene gameOverScene;
 	
 	
 	// Constructor
-	public Enemy()
+	public Enemy(Scene primaryScene, Image inputImage, Stage stage, Scene gameOverScene)
 	{	
-		imgView = new ImageView(new Image("file:src/bomb.png"));
+		this.imgView = new ImageView(inputImage);
+		this.stage = stage;
+		this.gameOverScene = gameOverScene;
 		imgView.relocate(psb.getWidth() * .1, psb.getHeight() * .1);
-		imgView.setFitHeight(30);
-		imgView.setFitWidth(30);
 	}
+	
 	
 	public ImageView getImgView()
 	{
@@ -49,28 +53,34 @@ public class Enemy
 		@Override
 		public void actionPerformed(ActionEvent arg0)
 		{
-			
-			
-			while(playerToChase.getXCoordinate() > imgView.getLayoutX()) {
-				imgView.relocate(imgView.getLayoutX() + 1, imgView.getLayoutY());
-				break;
-			}
-			while(playerToChase.getXCoordinate() < imgView.getLayoutX())
+			if (playerToChase.getXCoordinate() > imgView.getLayoutX())
 			{
-				imgView.relocate(imgView.getLayoutX() - 1, imgView.getLayoutX());
-				break;
+				imgView.setLayoutX(imgView.getLayoutX() + 3);
 			}
-			while(playerToChase.getYCoordinate() > imgView.getLayoutY())
+			if (playerToChase.getXCoordinate() < imgView.getLayoutX())
 			{
-				imgView.relocate(imgView.getLayoutX(), imgView.getLayoutY() + 1);
-				break;
+				imgView.setLayoutX(imgView.getLayoutX() - 3);
 			}
-			while(playerToChase.getYCoordinate() < imgView.getLayoutY())
+			if (playerToChase.getYCoordinate() > imgView.getLayoutY())
 			{
-				imgView.relocate(imgView.getLayoutX(), imgView.getLayoutY() - 1);
-				break;
+				imgView.setLayoutY(imgView.getLayoutY() + 3);
 			}
-
+			if (playerToChase.getYCoordinate() < imgView.getLayoutY())
+			{
+				imgView.setLayoutY(imgView.getLayoutY() - 3);
+			}
+			if (playerToChase.areRectsColliding(playerToChase.getXCoordinate(),
+											playerToChase.getXCoordinate() + 79,
+											playerToChase.getYCoordinate(),
+											playerToChase.getYCoordinate() + 79,
+											imgView.getLayoutX(),
+											imgView.getLayoutX() + 40,
+											imgView.getLayoutY(),
+											imgView.getLayoutY() + 40)
+											== true)
+			{
+				System.out.println("Game Over");
+			}
 		}
 	}
 }
