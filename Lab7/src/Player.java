@@ -1,3 +1,4 @@
+
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -27,6 +28,7 @@ public class Player
 	private Enemy enemy;
 	private Coin coin;
 	private Label scoreLabel;
+	
 
 	
 	//Constructor----------------------
@@ -104,9 +106,9 @@ public class Player
 				getYCoordinate(),
 				getYCoordinate() + 79,
 				enemy.getImgView().getLayoutX(),
-				enemy.getImgView().getLayoutX() + 40,
+				enemy.getImgView().getLayoutX() + 20,
 				enemy.getImgView().getLayoutY(),
-				enemy.getImgView().getLayoutY() + 40)
+				enemy.getImgView().getLayoutY() + 20)
 				== true) {
 		myText= new Text(500,100,"Game Over");
 		myGroup = new Group(myText);
@@ -124,9 +126,9 @@ public class Player
 				getYCoordinate(),
 				getYCoordinate() + 79,
 				coin.getImgView().getLayoutX(),
-				coin.getImgView().getLayoutX()+100,
+				coin.getImgView().getLayoutX()+20,
 				coin.getImgView().getLayoutY(),
-				coin.getImgView().getLayoutY()+100)
+				coin.getImgView().getLayoutY()+20)
 				== true) {
 			
 			score+=1;
