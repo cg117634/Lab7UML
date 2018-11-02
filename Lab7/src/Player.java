@@ -1,6 +1,7 @@
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -25,10 +26,11 @@ public class Player
 	
 	private Enemy enemy;
 	private Coin coin;
+	private Label scoreLabel;
 
 	
 	//Constructor----------------------
-	public Player(Scene primaryScene, Image inputImage, Stage stage, Enemy enemy,Coin coin,int score)
+	public Player(Scene primaryScene, Image inputImage, Stage stage, Enemy enemy,Coin coin,int score,Label scoreLabel)
 	{
 		this.score = score;
 		this.stage = stage;
@@ -37,6 +39,7 @@ public class Player
 		imgView.relocate(psb.getWidth() * .2, psb.getHeight() * .7);
 		this.enemy = enemy;
 		this.coin = coin;
+		this.scoreLabel=scoreLabel;
 	}
 	
 	
@@ -127,6 +130,8 @@ public class Player
 				== true) {
 			
 			score+=1;
+			scoreLabel.setText("Score: " + score);
+			coin.getImgView().relocate(psb.getWidth() * .1, psb.getHeight() * .1);
 	
 		
 		}
