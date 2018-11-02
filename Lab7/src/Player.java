@@ -53,15 +53,6 @@ public class Player
 	}
 	
 	//Public Scene for the Driver----------------
-	public Scene playermove()
-	{
-		myGroup.getChildren().add(imgView);
-		
-		primaryScene.setOnKeyPressed(this::move);
-		
-		return primaryScene;
-	}
-	
 	public Scene addEnemy(Enemy enemy)
 	{
 		enemy.chasePlayer(this);
@@ -71,6 +62,26 @@ public class Player
 		return primaryScene;
 	}
 	
+	public Scene addCoin(Coin coin)
+	{
+		
+		
+		myGroup.getChildren().add(coin.getImgView());
+				
+		return primaryScene;
+	}
+	
+	
+	public Scene playermove()
+	{
+		myGroup.getChildren().add(imgView);
+		
+		primaryScene.setOnKeyPressed(this::move);
+		
+		return primaryScene;
+	}
+	
+//use intersect code;
 	public void move(KeyEvent movement)
 	{
 		switch(movement.getCode())
