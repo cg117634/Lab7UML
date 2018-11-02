@@ -1,10 +1,10 @@
-
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -20,15 +20,21 @@ public class Player
 	public Stage firstStage;
 	private ImageView imgView;
 	private Rectangle2D psb = Screen.getPrimary().getVisualBounds();
+	private Stage stage;
+	private Text myText;
+	private Group myOtherGroup;
+	private Enemy enemy;
 
 	
 	//Constructor----------------------
-	public Player(Scene primaryScene, Image inputImage)
+	public Player(Scene primaryScene, Image inputImage, Stage stage, Enemy enemy)
 	{
-		this.score = 0;	
+		this.score = 0;
+		this.stage = stage;
 		this.primaryScene = primaryScene;
 		this.imgView = new ImageView(inputImage);
 		imgView.relocate(psb.getWidth() * .2, psb.getHeight() * .7);
+		this.enemy = enemy;
 	}
 	
 	
@@ -58,32 +64,13 @@ public class Player
 		primaryScene.setOnKeyPressed(this::move);
 	}
 	
-	public Scene addEnemy(Enemy enemy)
-	{
-		enemy.chasePlayer(this);
-		
-		myGroup.getChildren().add(enemy.getImgView());
-				
-		return primaryScene;
-	}
-	
-	public Scene addCoin(Coin coin)
-	{
-		
-		
-		myGroup.getChildren().add(coin.getImgView());
-				
-		return primaryScene;
-	}
-	
-	
-//use intersect code;
 	public void move(KeyEvent movement)
 	{
 		switch(movement.getCode())
 		{
 			case D:
 				imgView.setLayoutX(imgView.getLayoutX() + 10);
+				
 				//currentScore.setText("Current Score: " + addScore.playerScore());
 				break;
 			case A:
@@ -101,6 +88,28 @@ public class Player
 			default:
 				break;
 		}
+		gameOver();
+	}
+	
+	public void gameOver() {
+		
+		if (areRectsColliding(getXCoordinate(),
+				getXCoordinate() + 79,
+				getYCoordinate(),
+				getYCoordinate() + 79,
+				enemy.getImgView().getLayoutX(),
+				enemy.getImgView().getLayoutX() + 40,
+				enemy.getImgView().getLayoutY(),
+				enemy.getImgView().getLayoutY() + 40)
+				== true) {
+		myText= new Text(100,100,"Game Over");
+		myGroup = new Group(myText);
+		Scene gameOverScene=new Scene(myGroup, psb.getWidth() *.9, psb.getHeight() * .9);
+		stage.setScene(gameOverScene);
+		
+		}
+		
+		
 	}
 	public boolean areRectsColliding(double r1TopLeftX, double
 		r1BottomRightX,double r1TopLeftY, double r1BottomRightY, double
