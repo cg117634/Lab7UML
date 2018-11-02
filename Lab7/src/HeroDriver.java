@@ -1,22 +1,12 @@
-import java.io.FileNotFoundException;
-
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.text.Text;
-import javafx.stage.Screen;
-import javafx.stage.Stage;
-
 //made October 19, 2018
 public class HeroDriver extends Application
 {
+	
+
 	Scene currentScene;
 	Player player1;
 	Enemy enemy;
-	
+	private Timer myTimer;
 	Stage stage;
 
 	Rectangle2D psb = Screen.getPrimary().getVisualBounds();
@@ -45,16 +35,37 @@ public class HeroDriver extends Application
 		Group myGroup = new Group();
 		player1 = new Player(new Scene(myGroup, psb.getWidth() * .9, psb.getHeight() * .9), myGroup);
 		player1.addEnemy(new Enemy());
+		player1.addCoin(new Coin());
 		
 		// Stage
 		this.stage = primaryStage;
 		primaryStage.setTitle("My Game");
 		primaryStage.setScene(currentScene);
 		primaryStage.show();
+		//primaryStage.refreshScreen();
 	}
 	
 	public void startButton(ActionEvent args)
 	{
 		stage.setScene(player1.playermove());
 	}
+	
+	public void refreshScreen()
+	{
+		
+		myTimer = new Timer(50, new myTimeHandler());
+		myTimer.start();
+	}
+	private class myTimeHandler implements ActionListener
+	{
+		
+
+		@Override
+		public void actionPerformed(java.awt.event.ActionEvent e) {
+			// TODO Auto-generated method stub
+			stage.setScene(player1.playermove());
+			
+		}
+			
+		}
 }
