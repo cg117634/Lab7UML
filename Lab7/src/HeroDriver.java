@@ -1,16 +1,12 @@
-import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
-
-import javax.swing.Timer;
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -23,10 +19,11 @@ public class HeroDriver extends Application
 	Scene currentScene;
 	Player player1;
 	Enemy enemy;
-	
+	Coin coin;
+	Label score;
 	Scene myScene;
-	private Timer myTimer;
 	Stage stage;
+	int scoreNumber;
 
 	Rectangle2D psb = Screen.getPrimary().getVisualBounds();
 	
@@ -39,6 +36,7 @@ public class HeroDriver extends Application
 	public void start(Stage primaryStage) throws Exception, FileNotFoundException
 	{
 		// Start screen
+		score = new Label("Score: ");
 		Text startScreenText = new Text("Press the button to begin!\n\tMove with WASD");
 		startScreenText.relocate(psb.getWidth() * .4, psb.getHeight() * .2);
 		
@@ -61,6 +59,7 @@ public class HeroDriver extends Application
 		// Game
 		Image playerImage = new Image("file:src/littleViking.png");
 		Image enemyImage = new Image("file:src/enemy.png");
+		Image coinImage = new Image("file:src/coin.png");
 		
 		Group myGroup = new Group();
 		myScene = new Scene(myGroup, psb.getWidth() *.9, psb.getHeight() * .9);
@@ -68,14 +67,17 @@ public class HeroDriver extends Application
 		
 		
 		enemy = new Enemy(myScene, enemyImage, primaryStage, gameOverScene);
+		coin = new Coin(myScene, coinImage,primaryStage);
 		
 		
-		player1 = new Player(myScene, playerImage,primaryStage,enemy);
+		player1 = new Player(myScene, playerImage,primaryStage,enemy,coin,scoreNumber);
 		player1.playermove();
 		enemy.chasePlayer(player1);
+		scoreNumber = player1.playerScore();
 		
-		myGroup.getChildren().addAll(player1.getImgView(), enemy.getImgView());
-				
+		myGroup.getChildren().addAll(player1.getImgView(), enemy.getImgView(),coin.getImgView(),score);
+		score.setText("Score: " + scoreNumber);	
+	
 		//player1.addCoin(new Coin());
 		
 		// Stage
@@ -94,22 +96,5 @@ public class HeroDriver extends Application
 	
 	
 	
-	public void refreshScreen()
-	{
-		
-		myTimer = new Timer(50, new myTimeHandler());
-		myTimer.start();
-	}
-	private class myTimeHandler implements ActionListener
-	{
-		
-
-		@Override
-		public void actionPerformed(java.awt.event.ActionEvent e) {
-			// TODO Auto-generated method stub
-			//stage.setScene(player1.playermove());
-			
-		}
-			
-		}
 }
+		
