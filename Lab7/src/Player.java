@@ -22,19 +22,21 @@ public class Player
 	private Rectangle2D psb = Screen.getPrimary().getVisualBounds();
 	private Stage stage;
 	private Text myText;
-	private Group myOtherGroup;
+	
 	private Enemy enemy;
+	private Coin coin;
 
 	
 	//Constructor----------------------
-	public Player(Scene primaryScene, Image inputImage, Stage stage, Enemy enemy)
+	public Player(Scene primaryScene, Image inputImage, Stage stage, Enemy enemy,Coin coin,int score)
 	{
-		this.score = 0;
+		this.score = score;
 		this.stage = stage;
 		this.primaryScene = primaryScene;
 		this.imgView = new ImageView(inputImage);
 		imgView.relocate(psb.getWidth() * .2, psb.getHeight() * .7);
 		this.enemy = enemy;
+		this.coin = coin;
 	}
 	
 	
@@ -89,6 +91,7 @@ public class Player
 				break;
 		}
 		gameOver();
+		collect();
 	}
 	
 	public void gameOver() {
@@ -102,7 +105,7 @@ public class Player
 				enemy.getImgView().getLayoutY(),
 				enemy.getImgView().getLayoutY() + 40)
 				== true) {
-		myText= new Text(100,100,"Game Over");
+		myText= new Text(500,100,"Game Over");
 		myGroup = new Group(myText);
 		Scene gameOverScene=new Scene(myGroup, psb.getWidth() *.9, psb.getHeight() * .9);
 		stage.setScene(gameOverScene);
@@ -111,6 +114,26 @@ public class Player
 		
 		
 	}
+	public void collect() {
+		
+		if (areRectsColliding(getXCoordinate(),
+				getXCoordinate() + 79,
+				getYCoordinate(),
+				getYCoordinate() + 79,
+				coin.getImgView().getLayoutX(),
+				coin.getImgView().getLayoutX()+100,
+				coin.getImgView().getLayoutY(),
+				coin.getImgView().getLayoutY()+100)
+				== true) {
+			
+			score+=1;
+	
+		
+		}
+		
+		
+	}
+	
 	public boolean areRectsColliding(double r1TopLeftX, double
 		r1BottomRightX,double r1TopLeftY, double r1BottomRightY, double
 		r2TopLeftX,double r2BottomRightX, double r2TopLeftY, double
