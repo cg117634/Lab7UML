@@ -58,6 +58,26 @@ public class Player
 		primaryScene.setOnKeyPressed(this::move);
 	}
 	
+	public Scene addEnemy(Enemy enemy)
+	{
+		enemy.chasePlayer(this);
+		
+		myGroup.getChildren().add(enemy.getImgView());
+				
+		return primaryScene;
+	}
+	
+	public Scene addCoin(Coin coin)
+	{
+		
+		
+		myGroup.getChildren().add(coin.getImgView());
+				
+		return primaryScene;
+	}
+	
+	
+//use intersect code;
 	public void move(KeyEvent movement)
 	{
 		switch(movement.getCode())

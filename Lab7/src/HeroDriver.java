@@ -1,4 +1,7 @@
+import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
+
+import javax.swing.Timer;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -15,11 +18,14 @@ import javafx.stage.Stage;
 //made October 19, 2018
 public class HeroDriver extends Application
 {
+	
+
 	Scene currentScene;
 	Player player1;
 	Enemy enemy;
 	
 	Scene myScene;
+	private Timer myTimer;
 	Stage stage;
 
 	Rectangle2D psb = Screen.getPrimary().getVisualBounds();
@@ -67,16 +73,37 @@ public class HeroDriver extends Application
 		
 		myGroup.getChildren().addAll(player1.getImgView(), enemy.getImgView());
 				
+		//player1.addCoin(new Coin());
 		
 		// Stage
 		this.stage = primaryStage;
 		primaryStage.setTitle("My Game");
 		primaryStage.setScene(startScreenScene);
 		primaryStage.show();
+		//primaryStage.refreshScreen();
 	}
 	
 	public void startButton(ActionEvent args)
 	{
 		stage.setScene(myScene);
 	}
+	
+	public void refreshScreen()
+	{
+		
+		myTimer = new Timer(50, new myTimeHandler());
+		myTimer.start();
+	}
+	private class myTimeHandler implements ActionListener
+	{
+		
+
+		@Override
+		public void actionPerformed(java.awt.event.ActionEvent e) {
+			// TODO Auto-generated method stub
+			//stage.setScene(player1.playermove());
+			
+		}
+			
+		}
 }
