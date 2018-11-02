@@ -65,10 +65,13 @@ public class HeroDriver extends Application
 		Group myGroup = new Group();
 		myScene = new Scene(myGroup, psb.getWidth() *.9, psb.getHeight() * .9);
 		
-		player1 = new Player(myScene, playerImage);
-		player1.playermove();
+		
 		
 		enemy = new Enemy(myScene, enemyImage, primaryStage, gameOverScene);
+		
+		
+		player1 = new Player(myScene, playerImage,primaryStage,enemy);
+		player1.playermove();
 		enemy.chasePlayer(player1);
 		
 		myGroup.getChildren().addAll(player1.getImgView(), enemy.getImgView());
@@ -79,6 +82,7 @@ public class HeroDriver extends Application
 		this.stage = primaryStage;
 		primaryStage.setTitle("My Game");
 		primaryStage.setScene(startScreenScene);
+		//stage.setScene(gameOverScene);
 		primaryStage.show();
 		//primaryStage.refreshScreen();
 	}
@@ -87,6 +91,8 @@ public class HeroDriver extends Application
 	{
 		stage.setScene(myScene);
 	}
+	
+	
 	
 	public void refreshScreen()
 	{
