@@ -1,4 +1,6 @@
 
+import java.util.Random;
+
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -28,6 +30,8 @@ public class Player
 	private Enemy enemy;
 	private Coin coin;
 	private Label scoreLabel;
+	
+	private Random r;
 	
 
 	
@@ -133,9 +137,8 @@ public class Player
 			
 			score+=1;
 			scoreLabel.setText("Score: " + score);
-			coin.getImgView().relocate(psb.getWidth() * .1, psb.getHeight() * .1);
-	
-		
+			r = new Random();
+			coin.getImgView().relocate(psb.getWidth() * r.nextDouble(), r.nextDouble());
 		}
 		
 		

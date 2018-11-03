@@ -20,7 +20,7 @@ public class HeroDriver extends Application
 	Player player1;
 	Enemy enemy;
 	Coin coin;
-	Label score;
+	Label scoreLabel;
 	Scene myScene;
 	Stage stage;
 	int scoreNumber;
@@ -36,7 +36,9 @@ public class HeroDriver extends Application
 	public void start(Stage primaryStage) throws Exception, FileNotFoundException
 	{
 		// Start screen
-		score = new Label("Score: ");
+		scoreLabel = new Label("Score: ");
+		scoreNumber = 0;
+		
 		Text startScreenText = new Text("Press the button to begin!\n\tMove with WASD");
 		startScreenText.relocate(psb.getWidth() * .4, psb.getHeight() * .2);
 		
@@ -70,13 +72,13 @@ public class HeroDriver extends Application
 		coin = new Coin(myScene, coinImage,primaryStage);
 		
 		
-		player1 = new Player(myScene, playerImage,primaryStage,enemy,coin,scoreNumber);
+		player1 = new Player(myScene, playerImage,primaryStage,enemy,coin, scoreNumber, scoreLabel);
 		player1.playermove();
 		enemy.chasePlayer(player1);
 		scoreNumber = player1.playerScore();
 		
-		myGroup.getChildren().addAll(player1.getImgView(), enemy.getImgView(),coin.getImgView(),score);
-		score.setText("Score: " + scoreNumber);	
+		myGroup.getChildren().addAll(player1.getImgView(), enemy.getImgView(),coin.getImgView(),scoreLabel);
+		scoreLabel.setText("Score: " + scoreNumber);	
 	
 		//player1.addCoin(new Coin());
 		
